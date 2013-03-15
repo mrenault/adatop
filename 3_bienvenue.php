@@ -1,7 +1,12 @@
 <?php
+session_start();  
+if (!isset($_SESSION['login'])) { 
+   header ('Location: index.php'); 
+   exit();  
+}
 include('includes/top.php');
 ?>
-<p>Bienvenue Mr Matthieu RENAULT [<a href="profil.php">Votre profil</a>] - [Deconnexion] </p>
+<p>Bienvenue Mr Matthieu RENAULT [<a href="profil.php">Votre profil</a>] - [<a href="deconnexion.php">Deconnexion</a>] </p>
 <h2>Formulaire d'inscription</h2>
 
 

@@ -4,7 +4,8 @@ include('includes/functions.php');
 ?>
 <p></p>
 <a href="2_login.php">Avec Login</a> | <a href="3_bienvenue_bis.php">Avec saisie email</a>
-<p><?php
+<p>
+<?php
 listeUtilisateurs();
 ?></p>
 <?php

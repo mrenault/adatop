@@ -1,7 +1,13 @@
 <?php
+session_start();  
+if (!isset($_SESSION['login'])) { 
+   header ('Location: index.php'); 
+   exit();  
+}
+
 include('includes/top.php');
 ?>
-<p>Bienvenue Mr Matthieu RENAULT [<a href="profil.php">Votre profil</a>] - [<a href="http://www.carrefour-eau.com/2013/co/mot-bienvenue-14e-carrefour-gestions-eau.html">Deconnexion</a>] </p>
+<p>Bienvenue Mr Matthieu RENAULT [<a href="profil.php">Votre profil</a>] - [<a href="deconnexion.php">Deconnexion</a>] </p>
 <h2>Information trouvée dans l'ERP</h2>
 <form id="form1" name="form1" method="post" action="3_bienvenue.php">
   <p>
