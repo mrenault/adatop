@@ -1,10 +1,7 @@
-<?php
-include('includes/top.php');
+<?php include('includes/top.php');
 include('includes/functions.php');
 
 if (isset($_POST['Valider']) && $_POST['Valider'] == 'Valider') { 
-
-
    if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['password']) && !empty($_POST['password']))) {
    $login = $_POST['login'];
    $password = $_POST['password'];
@@ -12,13 +9,10 @@ if (isset($_POST['Valider']) && $_POST['Valider'] == 'Valider') {
    connexion($login,$password);
    //echo "connexion";
    }else{
-   
    echo "Pas de connexion possible, manque des informations de login";
-   
    }
       //echo "toujours rien";
    }
-   
 ?>
 <p><h2>Connectez-vous</h2></p>
 <form id="connexion" name="connexion" method="post" action="<?php $_SERVER["PHP_SELF"]; ?>">

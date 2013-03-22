@@ -26,7 +26,7 @@ class Mysql
 		$Mdp         = 'root',
 		$Lien        = '',	
 		$Debogue     = true,	
-		$NbRequetes  = 1;
+		$NbRequetes  = 0;
 
 
 
@@ -94,6 +94,23 @@ class Mysql
 			
 			return $TabResultat;
 		}
+
+/**
+* $Requete = Execution simple de Requête SQL
+*/ 
+	public
+		function executionRequeteSQL($Requete)
+		{
+			$i = 0;
+	
+			$Ressource = mysql_query($Requete,$this->Lien);
+			
+
+     		if (!$Ressource and $this->Debogue) throw new Erreur ('Erreur de requête SQL!!!');
+			
+			$this->NbRequetes++;
+			
+		}
 /**
 * Retourne le dernier identifiant généré par un champ de type AUTO_INCREMENT
 *
@@ -102,6 +119,7 @@ class Mysql
 		function DernierId()
 		{	
 			return mysql_insert_id($this->Lien);
+			
 		}
 /**
 * Envoie une requête SQL et retourne le nombre de table affecté
@@ -159,7 +177,7 @@ foreach ($Resulats as $Valeur)
 			session_start(); 
          	$_SESSION['login'] = $Valeur['login'];
          	logActions('connexion',$login,'OK');
-			echo "Bravo !!<br> Vous allez être redirigé vers votre formulaire.";
+			echo "Bravo !!<br> Vous allez être redirigé vers votre <a href='3_bienvenue.php'>formulaire</a>.";
 			header("Location: 3_bienvenue.php");
 			exit();
 		}else if ($Valeur['email'] == ''){
@@ -179,7 +197,7 @@ foreach ($Resulats as $Valeur)
 
 
 
-function listeUtilisateurs($idUser){
+function listeUtilisateurs($idUser = NULL){
 // On appelle la classe de connexion Mysql
 	try
 {
@@ -193,7 +211,7 @@ catch (Erreur $e) {
 //Envoie de la requête SQL
 try
 {
-	$sql = "SELECT login,password,email FROM users ";
+	$sql = "SELECT id,login,password,email FROM users ";
 	$condition = "WHERE id=".$idUser;
 	if ($idUser == '' || $idUser == NULL || !$idUser)
 	{
@@ -212,7 +230,7 @@ catch (Erreur $e) {
 
 //Utilisation des résultats
 foreach ($Resulats as $Valeur)
-	{
+	{	
     	echo $Valeur['login'];
     	echo $Valeur['password'];
     	echo $Valeur['email'];
@@ -244,26 +262,7 @@ function envoyerEmail($emailFrom,$emailTo,$sujet,$message){
 
 
 
-function ajoutUtilisateurs(){
-	include "connexion.php";
-	logActions('ajout');
-	// Test de connexion
-	if (mysqli_connect_errno())
-  	{
-  		echo "Echec de connexion à la base de données SQL : ".mysqli_connect_error();
-  	}
 
-	$sql="INSERT INTO users (login, password, email,acl) VALUES ('zzzz','eeee','sdfdsf@mac.com','45')";
-
-	if (!mysqli_query($con,$sql))
-  	{
-  		die('Error: ' . mysqli_error());
-  	}
-	echo "Ajout de la saisie";
-
-mysqli_close($con);
-}
-// Fin de fonction listeUtilisateurs
 
 // Début effacement d'un utilisateur
 function effacerUtilisateurs($idUser){

@@ -2,11 +2,11 @@
 include('includes/top.php');
 ?>
 <h2>Veuillez saisir votre email (vérification ERP)</h2>
-<form id="form1" name="form1" method="post" action="4_verif_email.php">
+<form id="form1" name="form1" method="post" action="inscription.php">
 
   <p>
     <label for="eMail">eMail</label>
-    <input type="text" name="eMail" id="eMail" />
+    <input type="text" name="email" value="" id="email" />
   </p>
 
 <p>Vérifier l'email -&gt; Si n'existe pas dans ERP

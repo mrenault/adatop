@@ -33,7 +33,7 @@ h2 {
 <center>
 <table width="800">
 <tr><td>
-<a href="http://localhost/maquette/"><img src="images/header.jpg" width="800" height="222" /></a></td>
+<img src="images/header.jpg" width="800" height="222" /></td>
 </tr>
 <tr><td>
 <!-- Find e header -->
